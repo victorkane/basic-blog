@@ -1,0 +1,12 @@
+// Override default variables before the import
+
+/* use bootstrap sass variables */
+/* see https://htmlcolorcodes.com/color-chart/web-safe-color-chart/ */
+$body-bg: #ffffcc;
+$body-color: #663300;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+/* npm install bootstrap-react bootstrap node-sass */
+/* For custom theming see: https://getbootstrap.com/docs/4.3/getting-started/theming/ */
