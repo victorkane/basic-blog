@@ -8,10 +8,14 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import posts from '../../data/posts.json'
 import './index.scss'
 
+const categories = [ 'catagory1', 'category2', 'category3', 'category4' ]
+
 class Posts extends Component {
+  // For random number see https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
   state = {
-    posts: posts.slice(0, 6)
+    posts: posts.slice(0, 6).map(post => { return { ...post, category: categories[Math.floor(Math.random() * 3)] }})
   }
+
   render () {
     const thePosts = this.state.posts.map(post => {
       return <ListGroup.Item
