@@ -27,9 +27,6 @@ const Layout = props => {
             <Nav.Link>
               <Link to="/archive">Archive</Link>
             </Nav.Link>
-            <Nav.Link>
-              <Link to="/new-post">New Post</Link>
-            </Nav.Link>
           </Nav>
         </Navbar>
       </div>

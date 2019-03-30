@@ -10,14 +10,15 @@ import './index.scss'
 
 class Posts extends Component {
   state = {
-    posts: posts.slice(0, 10)
+    posts: posts.slice(0, 6)
   }
   render () {
     const thePosts = this.state.posts.map(post => {
       return <ListGroup.Item
-        key={post.id}
-        variant="flush">
-        {post.title}
+          key={post.id}
+          variant="flush">
+          <h5>{post.title}</h5>
+          {post.body.substr(0,80) + '...'}
         </ListGroup.Item>
     })
     return (
@@ -26,7 +27,7 @@ class Posts extends Component {
           <Col>
             <Card><Card.Title>Posts
               </Card.Title>
-                <ListGroup variant="flush">
+                <ListGroup>
                   {thePosts}
                 </ListGroup>
             </Card>
