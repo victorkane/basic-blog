@@ -4,11 +4,10 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
-//import InputGroup from 'react-bootstrap/InputGroup'
-//import FormControl from 'react-bootstrap/FormControl'
+import './index.scss'
+
 // file obtained by: curl https://jsonplaceholder.typicode.com/posts > posts.json
 import posts from '../../data/posts.json'
-import './index.scss'
 
 const categories = [ 'catagory1', 'category2', 'category3', 'category4' ]
 
