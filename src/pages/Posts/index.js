@@ -26,6 +26,11 @@ class Posts extends Component {
     })
   }
 
+	handleFormSubmit = formSubmitEvent => {
+	  formSubmitEvent.preventDefault();
+		  console.log("You have submitted:", this.state.selectedOption);
+	};
+
   render () {
     const thePosts = this.state.posts.map(post => {
       return <ListGroup.Item
@@ -59,8 +64,14 @@ class Posts extends Component {
 				 <Card.Title>Filter by Post category</Card.Title>
 				 <Card.Body>
 				 <Card.Text>
-          <form>
+          <form onSubmit={this.handleFormSubmit}>
 					  {theCategoryOptions}
+            <div className="form-group">
+				      <p>Show posts with selected category</p>
+              <button className="btn btn-primary mt-2" type="submit">
+                Select
+              </button>
+            </div>
           </form>
 				 </Card.Text>
 				 </Card.Body>
