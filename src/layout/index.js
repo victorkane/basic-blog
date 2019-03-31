@@ -21,12 +21,12 @@ const Layout = props => {
             </Link>
           </Navbar.Brand>
           <Nav className="blog-menu mr-auto">
-            <Nav.Link>
+            <Nav className="ml-3">
               <Link to="/about">About</Link>
-            </Nav.Link>
-            <Nav.Link>
+            </Nav>
+            <Nav className="ml-3">
               <Link to="/archive">Archive</Link>
-            </Nav.Link>
+            </Nav>
           </Nav>
         </Navbar>
       </div>
