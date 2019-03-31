@@ -17,7 +17,7 @@ class Posts extends Component {
   state = {
     posts: posts.slice(0, 6).map(post => { return { ...post, category: categories[Math.floor(Math.random() * 4)] }}),
     categories: categories,
-		selectedCategory: "category2"
+		selectedCategory: ""
   }
 
   handleOptionChange = changeEvent => {
