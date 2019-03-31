@@ -21,16 +21,12 @@ class Posts extends Component {
   }
 
   handleOptionChange = changeEvent => {
-	  this.setState({
-      selectedCategory: changeEvent.target.value
-    })
+	  console.log('selected category', changeEvent.target.value)
   }
 
 	handleFormSubmit = formSubmitEvent => {
 	  formSubmitEvent.preventDefault();
-		this.setState({
-		  selectedCategory: ""
-		})
+	  console.log('you pressed the clear selection button')
 	};
 
   render () {
