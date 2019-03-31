@@ -51,35 +51,39 @@ class Posts extends Component {
                   checked={this.state.selectedCategory === category }
 									onChange={this.handleOptionChange}
                   className="form-check-input"
+									inline
 					/>
 					{category}
 			  </label>
 			</div>
     })
     return (
+			<>
+        <Container className="Filter">
+          <Row>
+				    <Col className="mt-4 p-4" sm={12}>
+				     <Card>
+				       <Card.Title className="px-4 pt-4 pb-0">Filter by Post category</Card.Title>
+				       <Card.Body>
+				         <Card.Text>
+                  <form onSubmit={this.handleFormSubmit}>
+					          {theCategoryOptions}
+                    <div className="form-group">
+				              <p>Show posts with selected category</p>
+                      <button className="btn btn-primary mt-2" type="submit">
+                        Select
+                      </button>
+                    </div>
+                  </form>
+				         </Card.Text>
+				       </Card.Body>
+				     </Card>
+          </Col>
+				</Row>
+			</Container>
       <Container className="Posts">
         <Row>
-				<Col>
-				 <Card>
-				 <Card.Title>Filter by Post category</Card.Title>
-				 <Card.Body>
-				 <Card.Text>
-          <form onSubmit={this.handleFormSubmit}>
-					  {theCategoryOptions}
-            <div className="form-group">
-				      <p>Show posts with selected category</p>
-              <button className="btn btn-primary mt-2" type="submit">
-                Select
-              </button>
-            </div>
-          </form>
-				 </Card.Text>
-				 </Card.Body>
-				 </Card>
-        </Col>
-				</Row>
-        <Row>
-          <Col>
+          <Col className="mt-4" sm={12}>
             <Card><Card.Title>Posts
               </Card.Title>
                 <ListGroup>
@@ -89,6 +93,7 @@ class Posts extends Component {
           </Col>
         </Row>
       </Container>
+		  </>
     )
   }
 }
