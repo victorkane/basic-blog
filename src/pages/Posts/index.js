@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 import './index.scss'
 
 // file obtained by: curl https://jsonplaceholder.typicode.com/posts > posts.json
@@ -32,52 +34,42 @@ const Posts = () => {
         variant="flush">
         <h5>{post.title}</h5>
         {post.body.substr(0,80) + '...'}
-				<small><strong>{post.category}</strong></small>
+				<p><small><strong>{post.category}</strong></small></p>
       </ListGroup.Item>
 		} else {
 		  return null;
 	  }
   })
   const theCategoryOptions = categoryList.map((category,i) => {
-		return <div className="form-check" key={i}>
-        <label>
-				  <input
-            type="radio"
-            name="react-tips"
-            value={category}
-            checked={selectedCategory === category }
-					  onChange={handleOptionChange}
-            className="form-check-input"
-			    />
-					  {category}
-			  </label>
-      </div>
+		return <Form.Check 
+		          key={i}
+							type="radio"
+							onChange={handleOptionChange}
+					  	value={category}
+							label={category}
+							checked={selectedCategory === category}
+					 >
+					 </Form.Check>
     })
   return (
   	<>
-       <Container className="Filter mb-4">
+       <Container className="Posts mb-4">
           <Row>
-				    <Col className="mt-4 p-4" sm={12}>
-				      <Card>
-				        <Card.Title className="px-4 pt-4 pb-0">Filter by Post category</Card.Title>
+				    <Col className="p-4">
+				      <Card style={{height:300 + 'px'}}>
 				        <Card.Body>
-                    <form onSubmit={handleFormSubmit}>
-					            {theCategoryOptions}
-                      <div className="form-group">
-				                <div>Show posts with selected category</div>
-                        <button className="btn btn-primary mt-2" type="submit">
+				          <Card.Title className="px-4 pt-0 pb-0">Filter by Post category</Card.Title>
+                    <Form onSubmit={handleFormSubmit}>
+                        <Form.Label>Select a category to filter posts</Form.Label>
+					              {theCategoryOptions}
+                        <Button className="mt-4" variant="primary" type="submit">
                           Clear Selection
-                        </button>
-                      </div>
-                    </form>
+                        </Button>
+                    </Form>
 				        </Card.Body>
 				      </Card>
             </Col>
-				  </Row>
-			  </Container>
-        <Container className="Posts">
-          <Row>
-            <Col sm={12}>
+            <Col>
               <Card>
 							  <Card.Title>Posts</Card.Title>
                 <ListGroup>
