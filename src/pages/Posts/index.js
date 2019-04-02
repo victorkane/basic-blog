@@ -21,17 +21,18 @@ const Posts = () => {
   const [postList] = useState(somePosts)
   const [categoryList] = useState(categories)
   const [selectedCategory, setCategory] = useState("")
-  const [selectedTextLength] = useState(40)
+  const [selectedTextLength, setTextLength] = useState(40)
 
   const handleOptionChange = changeEvent => {
     setCategory(changeEvent.target.value)
   }
   const handleFormSubmit = formSubmitEvent => {
-    formSubmitEvent.preventDefault();
+    formSubmitEvent.preventDefault()
     setCategory("")
   };
   const handleDropdownSelection = changeEvent => {
-    console.log('You selected ', changeEvent, ' from the Dropdown list')
+    // console.log('You selected ', changeEvent, ' from the Dropdown list')
+		setTextLength(changeEvent)
   }
 
   const thePosts = postList.map(post => {
