@@ -21,6 +21,7 @@ const Posts = () => {
   const [postList] = useState(somePosts)
   const [categoryList] = useState(categories)
   const [selectedCategory, setCategory] = useState("")
+  const [selectedTextLength] = useState(40)
 
   const handleOptionChange = changeEvent => {
     setCategory(changeEvent.target.value)
@@ -39,7 +40,7 @@ const Posts = () => {
         key={post.id}
         variant="flush">
         <h5>{post.title}</h5>
-        {post.body.substr(0,80) + '...'}
+        {post.body.substr(0,selectedTextLength) + ' ...'}
         <p><small><strong>{post.category}</strong></small></p>
       </ListGroup.Item>
     } else {
@@ -78,7 +79,7 @@ const Posts = () => {
             <Col>
               <Card>
                 <Card.Title>
-                  Posts <small>(text length: 80)</small>
+                  Posts <small>(text length: {selectedTextLength})</small>
                 </Card.Title>
                 <Dropdown className="mx-2 mb-2">
                   <Dropdown.Toggle className="mx-2" variant="primary" id="post-text-length">
