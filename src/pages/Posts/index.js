@@ -29,6 +29,7 @@ const Posts = () => {
     formSubmitEvent.preventDefault();
     setCategory("")
   };
+
   const thePosts = postList.map(post => {
     if (selectedCategory === "" || selectedCategory === post.category) {
       return <ListGroup.Item
@@ -74,19 +75,19 @@ const Posts = () => {
             <Col>
               <Card>
                 <Card.Title>
-                  Posts
-                  <Dropdown>
-                    <Dropdown.Toggle variant="primary" id="post-text-length">
-                      Set Text Length
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item>40 chars</Dropdown.Item>
-                      <Dropdown.Item>80 chars</Dropdown.Item>
-                      <Dropdown.Item>120 chars</Dropdown.Item>
-                      <Dropdown.Item>160 chars</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                  Posts <small>(text length: 80)</small>
                 </Card.Title>
+                <Dropdown className="mx-2 mb-2">
+                  <Dropdown.Toggle className="mx-2" variant="primary" id="post-text-length">
+                    Set Text Length
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item eventKey={40}>40 chars</Dropdown.Item>
+                    <Dropdown.Item eventKey={80}>80 chars</Dropdown.Item>
+                    <Dropdown.Item eventKey={120}>120 chars</Dropdown.Item>
+                    <Dropdown.Item eventKey={160}>160 chars</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
                 <ListGroup>
                   {thePosts}
                 </ListGroup>
