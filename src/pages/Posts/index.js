@@ -7,6 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
+import DateRanger from '../../features/DateRanger'
 import './index.scss'
 
 // file obtained by: curl https://jsonplaceholder.typicode.com/posts > posts.json
@@ -75,6 +76,10 @@ const Posts = () => {
                         </Button>
                     </Form>
                 </Card.Body>
+              </Card>
+              <Card>
+                <Card.Title className="px-4 pt-0 pb-0">Filter by Date Range</Card.Title>
+                <DateRanger className="DateRanger" />
               </Card>
             </Col>
             <Col>
