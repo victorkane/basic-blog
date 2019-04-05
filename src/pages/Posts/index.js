@@ -7,6 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
+import moment from 'moment'
 import DateRanger from '../../features/DateRanger'
 import './index.scss'
 
@@ -23,6 +24,11 @@ const Posts = () => {
   const [categoryList] = useState(categories)
   const [selectedCategory, setCategory] = useState("")
   const [selectedTextLength, setTextLength] = useState(40)
+  const [dateRange, setDateRange] = useState({
+    // moment() object is expected by react-dates
+    start: moment('2019-01-01T00:00:00'), 
+    end: moment()
+  })
 
   const handleOptionChange = changeEvent => {
     setCategory(changeEvent.target.value)
@@ -34,6 +40,10 @@ const Posts = () => {
   const handleDropdownSelection = changeEvent => {
     // console.log('You selected ', changeEvent, ' from the Dropdown list')
 		setTextLength(changeEvent)
+  }
+  const handleDateRange = (range) => {
+    // console.log('dateRange', range)
+    setDateRange(range)
   }
 
   const thePosts = postList.map(post => {
@@ -78,8 +88,19 @@ const Posts = () => {
                 </Card.Body>
               </Card>
               <Card>
-                <Card.Title className="px-4 pt-0 pb-0">Filter by Date Range</Card.Title>
-                <DateRanger className="DateRanger" />
+                <Card.Title className="px-4 pt-0 pb-0">
+                  Filter by Date Range
+                </Card.Title>
+                <Card.Text className="ml-4">
+                  From: {dateRange.start?dateRange.start.format('MM/DD/YYYY'):null}
+                </Card.Text>
+                <Card.Text className="ml-4">
+                  To: {dateRange.end?dateRange.end.format('MM/DD/YYYY'):null}
+                </Card.Text>
+                <DateRanger
+                  theStartDate={dateRange.start}
+                  handleDateRange={handleDateRange}
+                  className="DateRanger" />
               </Card>
             </Col>
             <Col>
