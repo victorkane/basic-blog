@@ -14,6 +14,8 @@ import './index.scss'
 // file obtained by: curl https://jsonplaceholder.typicode.com/posts > posts.json
 import posts from '../../data/posts.json'
 
+console.log('Posts', posts[0])
+
 const categories = [ 'catagory1', 'category2', 'category3', 'category4' ]
 
 // For random number see https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
@@ -23,11 +25,11 @@ const Posts = () => {
   const [postList] = useState(somePosts)
   const [categoryList] = useState(categories)
   const [selectedCategory, setCategory] = useState("")
-  const [selectedTextLength, setTextLength] = useState(40)
+  const [selectedTextLength, setTextLength] = useState(41)
   const [dateRange, setDateRange] = useState({
     // moment() object is expected by react-dates
     start: moment('2019-01-01T00:00:00'), 
-    end: moment()
+    end: moment(), 
   })
 
   const handleOptionChange = changeEvent => {
@@ -47,13 +49,20 @@ const Posts = () => {
   }
 
   const thePosts = postList.map(post => {
-    if (selectedCategory === "" || selectedCategory === post.category) {
+    let date1 = Object.assign({}, dateRange.start); 
+    let date2 = Object.assign({}, dateRange.end); 
+    if (
+      (selectedCategory === "" || selectedCategory === post.category)
+      &&
+       moment(post.postDate).isAfter(moment(date1).subtract('1', 'days')) &&
+       moment(post.postDate).isBefore(moment(date2).add('1', 'days'))
+    ){
       return <ListGroup.Item
         key={post.id}
         variant="flush">
         <h5>{post.title}</h5>
         {post.body.substr(0,selectedTextLength) + ' ...'}
-        <p><small><strong>{post.category}</strong></small></p>
+        <p><small><strong>{post.category}</strong> {moment(post.postDate).format('MM/DD/YYYY')}</small></p>
       </ListGroup.Item>
     } else {
       return null;
