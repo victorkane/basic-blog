@@ -54,8 +54,9 @@ const Posts = () => {
     if (
       (selectedCategory === "" || selectedCategory === post.category)
       &&
-       moment(post.postDate).isAfter(moment(date1).subtract('1', 'days')) &&
-       moment(post.postDate).isBefore(moment(date2).add('1', 'days'))
+      moment(post.postDate).isAfter(moment(date1).subtract('1', 'days')) &&
+      // moment(post.postDate).isBefore(moment(date2).add('1', 'days'))
+      moment(post.postDate).isBefore(moment(date2))
     ){
       return <ListGroup.Item
         key={post.id}
