@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Layout from './layout'
 import Posts from './pages/Posts'
+import Post from './pages/Post'
 import About from './pages/About'
 import Archive from './pages/Archive'
 
@@ -12,6 +13,7 @@ const App = () => (
       <Switch>
         <Route path="/about" component={About} />
         <Route path="/archive" component={Archive} />
+        <Route path="/post/:id" component={Post} />
         <Route path="/" exact component={Posts} />
       </Switch>
     </Layout>

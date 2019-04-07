@@ -26,7 +26,7 @@ const Posts = () => {
   const [postList] = useState(somePosts)
   const [categoryList] = useState(categories)
   const [selectedCategory, setCategory] = useState("")
-  const [selectedTextLength, setTextLength] = useState(41)
+  const [selectedTextLength, setTextLength] = useState(80)
   const [dateRange, setDateRange] = useState({
     // moment() object is expected by react-dates
     start: moment('2019-01-01T00:00:00'), 
@@ -64,7 +64,7 @@ const Posts = () => {
         variant="flush">
         <h5>{post.title}</h5>
         {post.body.substr(0,selectedTextLength) + ' ...'}
-        <Link to="#">read more</Link>
+        <Link to={`/post/${post.id}`}><strong>read more</strong></Link>
         <p><small><strong>{post.category}</strong> {moment(post.postDate).format('MM/DD/YYYY')}</small></p>
       </ListGroup.Item>
     } else {
