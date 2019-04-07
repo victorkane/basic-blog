@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
 import moment from 'moment'
 import DateRanger from '../../features/DateRanger'
+import { Link } from 'react-router-dom'
 import './index.scss'
 
 // file obtained by: curl https://jsonplaceholder.typicode.com/posts > posts.json
@@ -63,6 +64,7 @@ const Posts = () => {
         variant="flush">
         <h5>{post.title}</h5>
         {post.body.substr(0,selectedTextLength) + ' ...'}
+        <Link to="#">read more</Link>
         <p><small><strong>{post.category}</strong> {moment(post.postDate).format('MM/DD/YYYY')}</small></p>
       </ListGroup.Item>
     } else {
