@@ -15,8 +15,8 @@ import './index.scss'
 
 const PostList = () => {
 	const context = useContext(PostListContext)
-  const [postList] = useState(context.somePosts)
-  const [categoryList] = useState(context.categories)
+  const [postList, setPostList] = useState([])
+  const [categoryList, setCategoryList] = useState([])
   const [selectedCategory, setCategory] = useState("")
   const [selectedTextLength, setTextLength] = useState(80)
   const [dateRange, setDateRange] = useState({
@@ -24,6 +24,8 @@ const PostList = () => {
     start: moment('2019-01-01T00:00:00'), 
     end: moment(), 
   })
+
+  console.log('postList state in PostList', postList)
 
   const handleOptionChange = changeEvent => {
     setCategory(changeEvent.target.value)
@@ -37,6 +39,16 @@ const PostList = () => {
   }
   const handleDateRange = (range) => {
     setDateRange(range)
+  }
+
+  if (typeof postList === 'undefined') {
+    return <div class="spinner-border text-primary m-4" role="status"> <span class="sr-only">Loading...</span> </div>
+  }
+
+  if (Object.keys(context.somePosts).length > 0 && postList.length === 0) {
+    console.log('context in postList', context)
+    setPostList(context.somePosts)
+    setCategoryList(context.categories)
   }
 
   const thePosts = postList.map(post => {
@@ -61,6 +73,9 @@ const PostList = () => {
       return null;
     }
   })
+
+  console.log('thePosts in PostList', thePosts)
+
   const theCategoryOptions = categoryList.map((category,i) => {
     return <Form.Check 
               key={i}
