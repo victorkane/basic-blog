@@ -15,8 +15,8 @@ import './index.scss'
 
 const PostList = () => {
 	const context = useContext(PostListContext)
-  const [postList] = useState(context.somePosts)
-  const [categoryList] = useState(context.categories)
+  const [postList, setPostList] = useState([])
+  const [categoryList, setCategoryList] = useState([])
   const [selectedCategory, setCategory] = useState("")
   const [selectedTextLength, setTextLength] = useState(80)
   const [dateRange, setDateRange] = useState({
@@ -38,6 +38,19 @@ const PostList = () => {
   const handleDateRange = (range) => {
     setDateRange(range)
   }
+
+  if (typeof postList === 'undefined') {
+    return <div className="spinner-border text-primary m-4" role="status"> <span className="sr-only">Loading...</span> </div>
+  }
+
+    console.log('context in postList', context)
+
+  if (Object.keys(context.somePosts).length > 0 && postList.length === 0) {
+    console.log('context in postList', context)
+    setPostList(context.somePosts)
+    setCategoryList(context.categories)
+  }
+    console.log('postList in postList', postList)
 
   const thePosts = postList.map(post => {
     let date1 = Object.assign({}, dateRange.start); 
