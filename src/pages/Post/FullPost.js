@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { PostListContext } from "../../context"
 import moment from 'moment'
 import Container from 'react-bootstrap/Container'
@@ -9,11 +9,10 @@ import './index.scss'
 
 const FullPost = (props) => {
 	const context = useContext(PostListContext)
-  const postList = context.somePosts
-  const fullPost = postList.find(element => {
-    return (parseInt(element.id) === parseInt(props.id))
-  })
+  const [postList, setPostList] = useState([])
+  const [fullPost, setFullPost] = useState({})
   // console.log(fullPost)
+  if (postList.length > 0) {
   return (
     <Container className="Post">
       <Row>
@@ -28,6 +27,19 @@ const FullPost = (props) => {
       </Row>
     </Container>
   )
+  } else {
+    // has the data come in for the first time?
+    // yes, grab it and set the fullpost and posts state
+    // grab post from url id
+    if (Object.keys(context.somePosts).length > 0 && postList.length === 0) {
+      const theFullPost = context.somePosts.find(element => {
+        return (parseInt(element.id) === parseInt(props.id))
+  })
+      setPostList(context.somePosts)
+      setFullPost(theFullPost)
+    }
+    return <div className="spinner-border text-primary m-4" role="status"> <span className="sr-only">Loading...</span> </div>
+  }
 }
 
 export default FullPost
