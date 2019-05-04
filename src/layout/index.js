@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,10 +7,6 @@ import FormControl from 'react-bootstrap/FormControl';
 import './index.scss';
 
 const Layout = props => {
-  const searchRef = useRef()
-  useEffect (() => {
-    searchRef.current.focus();
-  }, [])
   const handleFormSubmit = formSubmitEvent => {
     formSubmitEvent.preventDefault()
     const searchTerm = formSubmitEvent.target.elements.search.value
@@ -47,7 +43,6 @@ const Layout = props => {
                 placeholder="&#xe8b6;"
                 name="search"
                 className="search"
-                ref={searchRef}
                 />
             </Form>
           </Nav>
