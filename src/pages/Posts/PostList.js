@@ -25,7 +25,7 @@ const PostList = () => {
     end: moment(), 
   })
 
-  console.log('postList state in PostList', postList)
+  // console.log('postList state in PostList', postList)
 
   const handleOptionChange = changeEvent => {
     setCategory(changeEvent.target.value)
@@ -46,7 +46,7 @@ const PostList = () => {
   }
 
   if (Object.keys(context.somePosts).length > 0 && postList.length === 0) {
-    console.log('context in postList', context)
+    // console.log('context in postList', context)
     setPostList(context.somePosts)
     setCategoryList(context.categories)
   }
@@ -74,7 +74,7 @@ const PostList = () => {
     }
   })
 
-  console.log('thePosts in PostList', thePosts)
+  // console.log('thePosts in PostList', thePosts)
 
   const theCategoryOptions = categoryList.map((category,i) => {
     return <Form.Check 
