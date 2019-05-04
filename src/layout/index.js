@@ -7,6 +7,11 @@ import FormControl from 'react-bootstrap/FormControl';
 import './index.scss';
 
 const Layout = props => {
+  const handleFormSubmit = formSubmitEvent => {
+    formSubmitEvent.preventDefault()
+    const searchTerm = formSubmitEvent.target.elements.search.value
+    console.log('search term', searchTerm)
+  }
   return (
     <React.Fragment>
       <div className="Navigation">
@@ -31,8 +36,8 @@ const Layout = props => {
             </Nav>
           </Nav>
           <Nav className="ml-auto pl-2 mr-auto">
-            <Form>
-              <FormControl type="text" size="sm" placeholder="&#xe8b6;" className="buscador" />
+            <Form onSubmit={handleFormSubmit}>
+              <FormControl type="text" size="sm" placeholder="&#xe8b6;" name="search" className="search" />
             </Form>
           </Nav>
         </Navbar>
