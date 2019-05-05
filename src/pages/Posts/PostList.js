@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { PostListContext } from "../../context";
+import { NavBarContext } from '../../layout'
 import moment from 'moment'
 import DateRanger from '../../features/DateRanger'
 import { Link } from 'react-router-dom'
@@ -15,6 +16,7 @@ import './index.scss'
 
 const PostList = () => {
 	const context = useContext(PostListContext)
+	const navBarContext = useContext(NavBarContext)
   const [postList, setPostList] = useState([])
   const [categoryList, setCategoryList] = useState([])
   const [selectedCategory, setCategory] = useState("")
@@ -24,6 +26,9 @@ const PostList = () => {
     start: moment('2019-01-01T00:00:00'), 
     end: moment(), 
   })
+  useEffect( () => {
+    navBarContext.searchRef.current.focus();
+  }, [])
 
   // console.log('postList state in PostList', postList)
 

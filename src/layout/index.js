@@ -6,7 +6,9 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import './index.scss';
 
-const Layout = props => {
+export const NavBarContext = React.createContext({});
+
+export const Layout = props => {
   const searchRef = useRef()
   useEffect (() => {
     searchRef.current.focus();
@@ -53,9 +55,10 @@ const Layout = props => {
           </Nav>
         </Navbar>
       </div>
-      <main className="Content">{props.children}</main>
+      <NavBarContext.Provider value={{"searchRef" : searchRef}}>
+        <main className="Content">{props.children}</main>
+      </NavBarContext.Provider>
     </React.Fragment>
   );
 };
 
-export default Layout;

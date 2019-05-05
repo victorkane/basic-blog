@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { PostListContext } from "../../context"
+import { NavBarContext } from '../../layout'
 import moment from 'moment'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -9,12 +10,14 @@ import './index.scss'
 
 const FullPost = (props) => {
 	const context = useContext(PostListContext)
+	const navBarContext = useContext(NavBarContext)
   const [postList, setPostList] = useState([])
   const [fullPost, setFullPost] = useState({})
   useEffect( () => {
     if (fullPost.title) {
       const docTitle = document.title
       document.title = `${docTitle} | ${fullPost.title}`
+      navBarContext.searchRef.current.focus();
     }
   }, [fullPost])
   if (postList.length > 0) {

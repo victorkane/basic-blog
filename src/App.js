@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-
-import Layout from './layout'
+import { Layout } from './layout'
 import Posts from './pages/Posts'
 import Post from './pages/Post'
 import About from './pages/About'
