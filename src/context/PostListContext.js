@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 
 // file obtained by: curl https://jsonplaceholder.typicode.com/posts > posts.json
-const categories = [ 'catagory1', 'category2', 'category3', 'category4' ]
+const categories = [ 'category1', 'category2', 'category3', 'category4' ]
 const dates = ["2019-01-01", "2019-01-15", "2019-02-01", "2019-03-01", "2019-01-01", "2019-02-01", "2019-04-01", "2019-01-01"]
 
 export const PostListContext = React.createContext({});
