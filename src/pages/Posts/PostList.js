@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
+import useLocalStorage from './../../hooks/useLocalStorage'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -26,6 +27,7 @@ const PostList = () => {
     start: moment('2019-01-01T00:00:00'), 
     end: moment(), 
   })
+  const [storedString, setStoredString] = useLocalStorage("stored string", "")
   useEffect( () => {
     navBarContext.searchRef.current.focus();
   }, [])
@@ -95,6 +97,21 @@ const PostList = () => {
   return (
     <>
        <Container className="Posts mb-4">
+          <Row>
+            <Col className="p-4">
+              <Card>
+                <Card.Title>Set string to store in local storage</Card.Title>
+                <Card.Body>
+                  <input
+                    type="text"
+                    placeholder="Enter string"
+                    value={storedString}
+                    onChange={e => setStoredString(e.target.value)}
+                  />
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
           <Row>
             <Col className="p-4">
               <Card style={{height:300 + 'px'}}>
