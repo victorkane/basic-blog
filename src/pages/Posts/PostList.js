@@ -27,7 +27,7 @@ const PostList = () => {
     start: moment('2019-01-01T00:00:00'), 
     end: moment(), 
   })
-  const [storedString, setStoredString] = useLocalStorage("stored string", "");
+  const [storedString, setStoredString] = useLocalStorage("stored string", "")
   useEffect( () => {
     navBarContext.searchRef.current.focus();
   }, [])
