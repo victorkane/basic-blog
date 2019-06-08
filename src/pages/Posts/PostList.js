@@ -110,10 +110,6 @@ const PostList = () => {
                   />
                 </Card.Body>
               </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col className="p-4">
               <Card style={{height:300 + 'px'}}>
                 <Card.Body>
                   <Card.Title className="px-4 pt-0 pb-0">Filter by Post category</Card.Title>
