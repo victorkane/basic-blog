@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import useLocalStorage from '../../hooks/useLocalStorage'
+import useDarkTheme from '../../hooks/useDarkTheme'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -27,13 +27,22 @@ const PostList = () => {
     start: moment('2019-01-01T00:00:00'), 
     end: moment(), 
   })
-  const [storedString, setStoredString] = useLocalStorage("stored string", "")
+  const [currentTheme, setCurrentTheme] = useDarkTheme()
   useEffect( () => {
     navBarContext.searchRef.current.focus();
   }, [])
 
   // console.log('postList state in PostList', postList)
 
+  const handleCurrentTheme = () => {
+    if (currentTheme !== "dark") {
+      setCurrentTheme("dark")
+    } else if (currentTheme === "dark") {
+      setCurrentTheme("light")
+    } else {
+      setCurrentTheme("light")
+    }
+  }
   const handleOptionChange = changeEvent => {
     setCategory(changeEvent.target.value)
   }
@@ -100,14 +109,11 @@ const PostList = () => {
           <Row>
             <Col className="p-4">
               <Card>
-                <Card.Title>Set string to store in local storage</Card.Title>
+                <Card.Title>Set theme to store in local storage</Card.Title>
                 <Card.Body>
-                  <input
-                    type="text"
-                    placeholder="Enter string"
-                    value={storedString}
-                    onChange={e => setStoredString(e.target.value)}
-                  />
+                  <Button onClick={handleCurrentTheme}>
+                    Toggle theme
+                  </Button>
                 </Card.Body>
               </Card>
               <Card style={{height:300 + 'px'}}>

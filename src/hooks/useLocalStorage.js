@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React from 'react';
 
 function useLocalStorage(key, initialValue) {
   // Function to initialize state
-  const [storedValue, setStoredValue] = useState(() => {
+  const [storedValue, setStoredValue] = React.useState(() => {
     try {
       // Get from local storage by key
       const item = window.localStorage.getItem(key);
