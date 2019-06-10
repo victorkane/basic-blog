@@ -6,16 +6,32 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import './index.scss'
 
+const LoginForm = () => (
+  <Card.Body>
+	  Form
+  </Card.Body>
+)
+
+const CoolContent = () => (
+  <Card.Body>
+    Really cool members' only content
+  </Card.Body>
+)
+
 const Archive = () => {
-  const context = useContext(NavBarContext)
+  // something like useAuthenticatedUser -> like DarkTheme, looks to see if there's a user, otherwise...
+  const contextNavBar = useContext(NavBarContext)
   useEffect (() => {
-    context.searchRef.current.focus();
+    contextNavBar.searchRef.current.focus();
   }, [])
   return (
     <Container className="Archive">
       <Row>
         <Col>
-          <Card><Card.Title>Archive</Card.Title></Card>
+          <Card>
+					  <Card.Title>Archive</Card.Title>
+						<CoolContent />
+					</Card>
         </Col>
       </Row>
     </Container>
