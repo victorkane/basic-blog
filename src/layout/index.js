@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -9,6 +10,7 @@ import './index.scss';
 export const NavBarContext = React.createContext({});
 
 export const Layout = props => {
+  const [ t, i18n ] = useTranslation('', { useSuspense: false })
   const searchRef = useRef()
   useEffect (() => {
     searchRef.current.focus();
@@ -35,10 +37,10 @@ export const Layout = props => {
           </Navbar.Brand>
           <Nav className="blog-menu mr-auto">
             <Nav className="ml-3">
-              <Link to="/about">About</Link>
+              <Link to="/about">{t('menu.about')}</Link>
             </Nav>
             <Nav className="ml-3">
-              <Link to="/archive">Archive</Link>
+              <Link to="/archive">{t('menu.archive')}</Link>
             </Nav>
           </Nav>
           <Nav className="ml-auto pl-2 mr-auto">

@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { useTranslation } from 'react-i18next';
 import useDarkTheme from '../../hooks/useDarkTheme'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -7,6 +8,7 @@ import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { PostListContext } from "../../context";
 import { NavBarContext } from '../../layout'
@@ -28,6 +30,7 @@ const PostList = () => {
     end: moment(), 
   })
   const [currentTheme, setCurrentTheme] = useDarkTheme()
+  const [ t, i18n ] = useTranslation('', { useSuspense: false })
   useEffect( () => {
     navBarContext.searchRef.current.focus();
   }, [])
@@ -55,6 +58,10 @@ const PostList = () => {
   }
   const handleDateRange = (range) => {
     setDateRange(range)
+  }
+
+  const changeCurrentLanguage = (lng) => {
+    i18n.changeLanguage(lng)
   }
 
   if (typeof postList === 'undefined') {
@@ -109,16 +116,25 @@ const PostList = () => {
           <Row>
             <Col className="p-4">
               <Card>
-                <Card.Title>Set theme to store in local storage</Card.Title>
+                <Card.Title>{t('headers.settheme')}</Card.Title>
                 <Card.Body>
                   <Button onClick={handleCurrentTheme}>
                     Toggle theme
                   </Button>
+                  <ButtonGroup className="mt-1">
+                    <div>Toggle language</div>
+                    <Button size="sm ml-1" className="info" onClick={() => changeCurrentLanguage('es')}>
+                      Español
+                    </Button>
+                    <Button size="sm" className="info" onClick={() => changeCurrentLanguage('en')}>
+                      English
+                    </Button>
+                  </ButtonGroup>
                 </Card.Body>
               </Card>
               <Card style={{height:300 + 'px'}}>
                 <Card.Body>
-                  <Card.Title className="px-4 pt-0 pb-0">Filter by Post category</Card.Title>
+                  <Card.Title className="px-4 pt-0 pb-0">{t('headers.filtercategory')}</Card.Title>
                     <Form onSubmit={handleFormSubmit}>
                         <Form.Label>Select a category to filter posts</Form.Label>
                         {theCategoryOptions}
@@ -130,13 +146,13 @@ const PostList = () => {
               </Card>
               <Card>
                 <Card.Title className="px-4 pt-0 pb-0">
-                  Filter by Date Range
+                  {t('headers.filterdates')}
                 </Card.Title>
                 <Card.Text className="ml-4">
-                  From: {dateRange.start?dateRange.start.format('MM/DD/YYYY'):null}
+                  {t('headers.from')}: {dateRange.start?dateRange.start.format('MM/DD/YYYY'):null}
                 </Card.Text>
                 <Card.Text className="ml-4">
-                  To: {dateRange.end?dateRange.end.format('MM/DD/YYYY'):null}
+                  {t('headers.to')}: {dateRange.end?dateRange.end.format('MM/DD/YYYY'):null}
                 </Card.Text>
                 <DateRanger
                   theStartDate={dateRange.start}
@@ -147,11 +163,11 @@ const PostList = () => {
             <Col>
               <Card>
                 <Card.Title>
-                  Posts <small>(text length: {selectedTextLength})</small>
+                  {t('headers.posts')} <small>(text length: {selectedTextLength})</small>
                 </Card.Title>
                 <Dropdown className="mx-2 mb-2">
                   <Dropdown.Toggle className="mx-2" variant="primary" id="post-text-length">
-                    Set Text Length
+                    {t('headers.settextlength')}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item eventKey={40} onSelect={handleDropdownSelection}>40 chars</Dropdown.Item>
