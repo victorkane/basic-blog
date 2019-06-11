@@ -28,8 +28,8 @@ const LoginForm = (props) => {
   )
 }
 
-const CoolContent = () => (
-    <span>Really cool members' only content</span>
+const CoolContent = (props) => (
+    <span>Really cool members' only content just for you {props.username}</span>
 )
 
 const Archive = () => {
@@ -40,12 +40,6 @@ const Archive = () => {
   useEffect (() => {
     contextNavBar.searchRef.current.focus();
   }, [])
-	/*
-  useEffect (() => {
-    console.log('effect authUser changed', authUser.user)
-		// setLoggedIn(authUser.user)
-  }, [authUser])
-	*/
 
   const handleFormSubmit = (formSubmitEvent) => {
     formSubmitEvent.preventDefault();
@@ -54,7 +48,6 @@ const Archive = () => {
     setAuthUser(user, password);
 		let theUser = window.localStorage.getItem("user")
     console.log('submit authUser changed', theUser)
-		// setLoggedIn(JSON.parse(theUser))
 		setLoggedIn(theUser)
   };
 
@@ -66,10 +59,12 @@ const Archive = () => {
 					  <Card.Title>Archive</Card.Title>
             <Card.Body className="py-0 my-0">
 						  { loggedIn && JSON.parse(loggedIn) !== '<<noauth>>' ? 
-							    <div>User: {loggedIn}</div> : 
-									<div>You must be logged in to access members' cool content</div>
+							    <CoolContent username={loggedIn} /> : 
+									<>
+									  <div>You must be logged in to access members' cool content</div>
+					          <LoginForm handleFormSubmit={handleFormSubmit}/>
+									</>
 							}
-					    <LoginForm handleFormSubmit={handleFormSubmit}/>
             </Card.Body>
 					</Card>
         </Col>
