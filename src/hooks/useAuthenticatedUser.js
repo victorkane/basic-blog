@@ -11,7 +11,7 @@ const authList = [
 function useAuthenticatedUser() {
   // Initialize state
   // If at app start local storage holds a value for key theme, it will be returned in 
-  const [user, setUser] = useLocalStorage("user", "")
+  const [user, setUser] = useLocalStorage("user", '<<noauth>>')
   // Stage setter function
   const setAuthUser = (u, p) => {
     // find match in authList
@@ -19,7 +19,11 @@ function useAuthenticatedUser() {
       return member.user === u && member.password === p
     })
     console.log('theAuthUser', theAuthUser)
-    setUser("user", theAuthUser.user)
+		if (typeof theAuthUser === "undefined") {
+		  setUser('<<noauth>>')
+		} else {
+      setUser(theAuthUser.user)
+		}
   }
 
   return [
