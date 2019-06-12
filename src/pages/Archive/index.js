@@ -41,10 +41,10 @@ const Archive = () => {
   useEffect (() => {
     contextNavBar.searchRef.current.focus();
   }, [])
-  const [postRes, setPostRes] = useArchivePost({
-	  title: "The Title", 
-		body: "one, two,three"
-	}) 
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [newArchivedPost, setNewArchivedPost] = postArchiveAPI();
+
 	// console.log('post res', postRes)
 
   const handleFormSubmit = (formSubmitEvent) => {
@@ -57,10 +57,46 @@ const Archive = () => {
 		setLoggedIn(theUser)
   };
 
+  function postArchiveAPI() {
+    /* eslint-disable react-hooks/rules-of-hooks */
+    return useArchivePost(data => ({
+      url: "https://jsonplaceholder.typicode.com/posts",
+      method: "POST",
+      data
+    }));
+  }
+
+  const createArchivedPost = () => {
+    setNewArchivedPost({
+		  title,
+			body,
+			userId: 1
+    })
+  }
+
   return (
     <Container className="Archive">
       <Row>
         <Col>
+
+      <h1>New Archived Post</h1>
+      <label>
+        Title: <input value={title} onChange={e => setTitle(e.target.value)} />
+      </label>
+      <label>
+        Body: <input value={body} onChange={e => setBody(e.target.value)} />
+      </label>
+      <button onClick={createArchivedPost}>Create Archived Post</button>
+      <div className="new-archived-post">
+        {(newArchivedPost.pending && "Creating Archived Post...") ||
+          (newArchivedPost.complete &&
+            `Todo with title ${newArchivedPost.data.title} created with ID ${
+              newArchivedPost.data.id
+            }`)}
+      </div>
+
+
+				  
           <Card className="h-auto pb-2">
 					  <Card.Title>Archive</Card.Title>
             <Card.Body className="py-0 my-0">
