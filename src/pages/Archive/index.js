@@ -83,10 +83,10 @@ const Archive = () => {
 					  <Card.Title>New Archived Post</Card.Title>
             <Card.Body className="py-0 my-0">
               <InputGroup>
-                Title:&nbsp;&nbsp; <input  className="mb-1" value={title} onChange={e => setTitle(e.target.value)} />
+                Title:&nbsp;&nbsp; <Form.Control className="mb-1" value={title} onChange={e => setTitle(e.target.value)} />
               </InputGroup>
               <InputGroup>
-                Body:&nbsp; <textarea className="mb-1" value={body} onChange={e => setBody(e.target.value)} />
+                Body:&nbsp; <Form.Control as="textarea" className="mb-1" value={body} onChange={e => setBody(e.target.value)} />
               </InputGroup>
               <Button className="my-2" size="sm" onClick={createArchivedPost}>Create Archived Post</Button>
               <div className="new-archived-post">
