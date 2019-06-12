@@ -19,23 +19,25 @@ function useArchivePost(fn) {
         error: false,
         complete: false
       });
-      axios(req)
-        .then(res =>
+      const fetchData = async () => {
+        try {
+				  const res = await axios(req)
           setRes({
             data: res.data,
             pending: false,
             error: false,
             complete: true
           })
-        )
-        .catch(() =>
+				} catch(err) {
           setRes({
             data: null,
             pending: false,
             error: true,
             complete: true
           })
-        );
+				}
+      }
+			fetchData()
     },
     [req]
   );
