@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import './index.scss'
@@ -78,25 +79,26 @@ const Archive = () => {
     <Container className="Archive">
       <Row>
         <Col>
-
-      <h1>New Archived Post</h1>
-      <label>
-        Title: <input value={title} onChange={e => setTitle(e.target.value)} />
-      </label>
-      <label>
-        Body: <input value={body} onChange={e => setBody(e.target.value)} />
-      </label>
-      <button onClick={createArchivedPost}>Create Archived Post</button>
-      <div className="new-archived-post">
-        {(newArchivedPost.pending && "Creating Archived Post...") ||
-          (newArchivedPost.complete &&
-            `Todo with title ${newArchivedPost.data.title} created with ID ${
-              newArchivedPost.data.id
-            }`)}
-      </div>
-
-
-				  
+          <Card className="h-auto pb-2">
+					  <Card.Title>New Archived Post</Card.Title>
+            <Card.Body className="py-0 my-0">
+              <InputGroup>
+                Title:&nbsp;&nbsp; <input  className="mb-1" value={title} onChange={e => setTitle(e.target.value)} />
+              </InputGroup>
+              <InputGroup>
+                Body:&nbsp; <textarea className="mb-1" value={body} onChange={e => setBody(e.target.value)} />
+              </InputGroup>
+              <Button className="my-2" size="sm" onClick={createArchivedPost}>Create Archived Post</Button>
+              <div className="new-archived-post">
+                {(newArchivedPost.pending && "Creating Archived Post...") ||
+                  (newArchivedPost.complete &&
+                    `Todo with title ${newArchivedPost.data.title} created with ID ${
+                      newArchivedPost.data.id
+                  }`)
+							  }
+              </div>
+						</Card.Body>
+          </Card>
           <Card className="h-auto pb-2">
 					  <Card.Title>Archive</Card.Title>
             <Card.Body className="py-0 my-0">
