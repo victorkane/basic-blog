@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { NavBarContext } from '../../layout'
 import useAuthenticatedUser from '../../hooks/useAuthenticatedUser'
+import useArchivePost from '../../hooks/useArchivePost'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -40,6 +41,11 @@ const Archive = () => {
   useEffect (() => {
     contextNavBar.searchRef.current.focus();
   }, [])
+  const [postRes, setPostRes] = useArchivePost({
+	  title: "The Title", 
+		body: "one, two,three"
+	}) 
+	// console.log('post res', postRes)
 
   const handleFormSubmit = (formSubmitEvent) => {
     formSubmitEvent.preventDefault();
