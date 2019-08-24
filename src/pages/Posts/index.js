@@ -32,9 +32,7 @@ class Posts extends Component {
   render () {
     const thePosts = this.state.posts.map(post => {
 		  if (this.state.selectedCategory === "" || this.state.selectedCategory === post.category) {
-        return <ListGroup.Item
-          key={post.id}
-          variant="flush">
+        return <ListGroup.Item key={post.id}>
           <h5>{post.title}</h5>
           {post.body.substr(0,80) + '...'}
 					<small><strong>{post.category}</strong></small>
@@ -85,7 +83,7 @@ class Posts extends Component {
             <Col sm={12}>
               <Card>
 							  <Card.Title>Posts</Card.Title>
-                <ListGroup>
+                <ListGroup variant="flush">
                   {thePosts}
                 </ListGroup>
               </Card>
