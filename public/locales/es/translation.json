@@ -1,0 +1,15 @@
+{
+  "menu": {
+    "about": "Acerca nosotros",
+    "archive": "Archivo"
+  },
+  "headers": {
+    "settheme": "Setea theme puesto en el almacenamiento local",
+    "filtercategory": "Filtrar por categoría de Posteo",
+    "filterdates": "Filtrar por Rango de Datos",
+    "from": "Desde",
+    "to": "A",
+    "posts": "Posteos",
+    "settextlength": "Setear la longitud de los textos"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "menu": {
+    "about": "About",
+    "archive": "Archive"
+  },
+  "headers": {
+    "settheme": "Set theme to store in local storage",
+    "filtercategory": "Filter by Post category",
+    "filterdates": "Filter by Date Range",
+    "from": "From",
+    "to": "To",
+    "posts": "Posts",
+    "settextlength": "Set Text Length"
+  }
+}

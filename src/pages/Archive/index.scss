@@ -1,12 +1,12 @@
 .Archive {
-  /* color: green; */
-}
-
-.Archive .card {
-  height: 200px;
-  margin: 10px;
-}
-
-.Archive .card-title {
-  margin: 1rem;
+  .card {
+    height: 200px;
+    margin: 10px;
+    .new-archived-post {
+      font-size: .75rem;
+    }
+  }
+  .card-title {
+    margin: 1rem;
+  }
 }

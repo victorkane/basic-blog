@@ -1,12 +1,15 @@
 .Posts {
-  /* color: green; */
-}
-
-.Posts .card {
-  height: 200px;
-  margin: 10px;
-}
-
-.Posts .card-title {
-  margin: 1rem;
+  &.dark .card,
+  &.dark .list-group,
+  &.dark .list-group-item {
+    background-color: #663300;
+    color: #ffffcc;
+  }
+  .card {
+    height: 200px;
+    margin: 10px;
+  }
+  .card-title {
+    margin: 1rem;
+  }
 }
